@@ -1,0 +1,47 @@
+<h2>Welcome, <%= @user.name %></h2>
+
+<form action="/sessions" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="submit" value='Logout' name='Logout' class="btn btn-secondary btn-sm">
+</form>
+
+<a href='/secrets/'>See All Secrets</a>
+<h3><label>New Secret</label></h3>
+
+<form action="/users/<%= @user.id %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <textarea rows="4" cols="50" name="secret[content]" id="content"></textarea>
+    <br>
+    <input type="hidden" name="secret[user_id]" value="<% @user.id %>">
+    <input type="submit" value="Create Secret" name="Create Secret" class="btn btn-primary">
+</form>
+<div id="lower_left">
+    <table>
+        <h2>My Secrets</h2>
+        <% current_user.secrets.each do |secret| %>
+            <tr>
+                <td id="content_col"><%= secret.content %></td>
+                <td>
+                    <form action="/secrets/<%= secret.id %>" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                        <input type="submit" value='Delete Secret' name='Delete Secret' class="btn btn-danger btn-sm">
+                    </form>
+                </td>
+            </tr>
+            <tr><td><%= secret.likes.count %> likes</td></tr>
+        <% end %>
+    </table>
+</div>
+<div id="lower_right">
+    <h2>Secrets Liked</h2>
+    <table>
+    <% current_user.secrets_liked.each do |liked_secret| %>
+        <tr>
+            <td><%= liked_secret.content %></td>
+            <td><%= liked_secret.likes.count %></td>
+        </tr>
+    <% end %>
+    </table>
+</div>

@@ -1,0 +1,37 @@
+<h2>Welcome to Dojo Secrets</h2>
+<h4>Register as New User</h4>
+
+<% if flash[:error] %>
+    <% flash[:error].each do |err| %>
+        <%= err %>
+    <% end %>
+<% end %>
+
+<form action="/users" method="post">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+<table>
+    <tr>
+        <td><label for="email">Email</label></td>
+        <td><input id="email" name="user[email]" type="text"></td>
+    </tr>
+    <tr>
+        <td><label for="name">Name</label></td>
+        <td><input id="name" name="user[name]" type="text"></td>
+    </tr>
+    <tr>
+        <td><label for="password">Password</label></td>
+        <td><input id="password" name="user[password]" type="text"></td>
+    </tr>
+        <tr>
+        <td><label for="password_confirmation">Retype Password</label></td>
+        <td><input id="password_confirmation" name="user[password_confirmation]" type="text"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit" value="Join"></td>
+    </tr>
+</table>
+</form>
+<br>
+<a href="/sessions/new">Already a User? Login Here.</a> 
