@@ -8,7 +8,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'sqlite3', '~> 1.3.13'
 gem 'hirb'
 # Use Puma as the app server
-gem 'puma', '~> 3.12.2'
+gem 'puma', '~> 4.3.8'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
